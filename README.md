@@ -16,9 +16,20 @@ Jabba will create a tab in the `#tab_container` element, and populate each tab w
     $("#tab_container").jabba("els", "home"); // ==> home_el
     $("#tab_container").jabba("els", "home", home_el); // sets home_el as the content of the Home tab
 
-By default, jabba automatically generates an id for each tab by lowercasing the title and replacing spaces with the _ character. A custom tab ID may be set by passing a list of lists, with the second argument of the list set to the tab's id. A third optional argument allows for DOM elements to be added to each tab on creation:
+By default, jabba automatically generates an id for each tab by lowercasing the title and replacing spaces with the _ character. Custom id or element properties may be set by passing in an object with the following structure: `{ id:..., title:..., el:... }`. Example:
 
-    $("#tab_container").jabba([ ["Home", "custom_home_id", $("#home_el")], ["Profile", "custom_profile_id"], "Messages" ]);
+    $("#tab_container").jabba([
+        {
+            "title": "Home",
+            "id": "custom_home_id",
+            "el": $("#home_el")
+        },
+        {
+            "title": "Profile",
+            "id": "custom_profile_id"
+        },
+        "Messages"
+    ]);
 
 You may also pass in a JSON object containing the various options available to Jabba. A complete list of options are available below
 
