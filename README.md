@@ -13,8 +13,8 @@ Jabba takes one argument on calling - a list of tab titles
 Jabba will create a tab in the `#tab_container` element, and populate each tab with a blank DOM element. You may access and modify the DOM elements in the following ways:
 
     $("#tab_container").jabba("els"); // ==> [home_el, profile_el, messages_el, settings_el]
-    $("#tab_container").jabba("els", "home"); // ==> home_el
-    $("#tab_container").jabba("els", "home", home_el); // sets home_el as the content of the Home tab
+    $("#tab_container").jabba("el", "home"); // ==> home_el
+    $("#tab_container").jabba("el", "home", home_el); // sets home_el as the content of the Home tab
 
 By default, jabba automatically generates an id for each tab by lowercasing the title and replacing spaces with the _ character. Custom id or element properties may be set by passing in an object with the following structure: `{ id:..., title:..., el:... }`. Example:
 
