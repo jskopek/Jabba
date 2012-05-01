@@ -8,40 +8,30 @@ Usage
 
 Jabba takes one argument on calling - a list of tab titles
 
-`
-$("#tab_container").jabba(["Home", "Profile", "Messages", "Settings"])
-`
+    $("#tab_container").jabba(["Home", "Profile", "Messages", "Settings"])
 
 Jabba will create a tab in the `#tab_container` element, and populate each tab with a blank DOM element. You may access and modify the DOM elements in the following ways:
 
-`
-$("#tab_container").jabba("els"); // ==> [home_el, profile_el, messages_el, settings_el]
-$("#tab_container").jabba("els", "home"); // ==> home_el
-$("#tab_container").jabba("els", "home", home_el); // sets home_el as the content of the Home tab
-`
+    $("#tab_container").jabba("els"); // ==> [home_el, profile_el, messages_el, settings_el]
+    $("#tab_container").jabba("els", "home"); // ==> home_el
+    $("#tab_container").jabba("els", "home", home_el); // sets home_el as the content of the Home tab
 
 By default, jabba automatically generates an id for each tab by lowercasing the title and replacing spaces with the _ character. A custom tab ID may be set by passing a list of lists, with the second argument of the list set to the tab's id. A third optional argument allows for DOM elements to be added to each tab on creation:
 
-`
-$("#tab_container").jabba([ ["Home", "custom_home_id", $("#home_el")], ["Profile", "custom_profile_id"], "Messages" ]);
-`
+    $("#tab_container").jabba([ ["Home", "custom_home_id", $("#home_el")], ["Profile", "custom_profile_id"], "Messages" ]);
 
 You may also pass in a JSON object containing the various options available to Jabba. A complete list of options are available below
 
-`
-$("#tab_container").jabba({
-    "tabs": ["Home", "Profile", "Messages", "Settings"],
-    "carousel": 1000 //time, in ms, before switching to next tab,
-    "selected": "profile"
-})
-`
+    $("#tab_container").jabba({
+        "tabs": ["Home", "Profile", "Messages", "Settings"],
+        "carousel": 1000 //time, in ms, before switching to next tab,
+        "selected": "profile"
+    })
 
 You may get or modify these properties after creation by calling `.jabba`, followed by the property name:
 
-`
-$("#tabs_container").jabba("selected"); // ==> "profile"
-$("#tabs_container").jabba("selected", "messages");
-`
+    $("#tabs_container").jabba("selected"); // ==> "profile"
+    $("#tabs_container").jabba("selected", "messages");
 
 Methods:
 -------
