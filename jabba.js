@@ -42,9 +42,14 @@
         }
     }
     var methods = {
-        "init": function(tabs) {
-            for( var index in tabs ) {
-                var data = tabs[index];
+        "init": function(options) {
+            //if array of tabs is passed, convert into JSON object
+            if( $.isArray(options) ) {
+                options = { "tabs": options };
+            }
+
+            for( var index in options["tabs"] ) {
+                var data = options["tabs"][index];
                 //convert object into a simple JSON obj if it is not already
                 if( !(data instanceof Object) ) {
                     data = {"title": data};
@@ -69,7 +74,7 @@
             var first_id = $(this).find(".tab-content .tab-pane:first").attr("id");
             methods.select.call(this, first_id)
 
-            console.log("jabba initialized on ", this, tabs);
+            console.log("jabba initialized on ", this, options);
         },
         "select": function(tab_id) {
             //add active class to tab title

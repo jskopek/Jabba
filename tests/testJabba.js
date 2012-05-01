@@ -115,4 +115,35 @@ $(document).ready(function(){
         deepEqual( tab_ids, ["hello_world", "testing", "this"] );
     });
 
+    test("get tab ids", function() {
+        var el = $("<div id='tst'></div>");
+
+        el.jabba(["Hello World", "Testing", "This"]);
+        var tab_ids = el.jabba("tabs");
+        deepEqual( tab_ids, ["hello_world", "testing", "this"] );
+    });
+
+    test("carousel on", function() {
+        expect(4);
+        stop();
+
+        var el = $("<div id='tst'></div>");
+        el.jabba({
+            "tabs": ["Hello World", "Testing", "This"],
+            "carousel": 200
+        });
+
+        equal( el.find(".tab-pane.active").attr("id"), "hello_world" );
+        setTimeout(function() {
+            equal( el.find(".tab-pane.active").attr("id"), "testing" );
+        }, 250);
+        setTimeout(function() {
+            equal( el.find(".tab-pane.active").attr("id"), "this" );
+        }, 500);
+        setTimeout(function() {
+            equal( el.find(".tab-pane.active").attr("id"), "hello_world" );
+            start();
+        }, 750);
+    });
+
 });
