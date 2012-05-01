@@ -81,6 +81,12 @@
             //add active class to tab content
             $(this).find(".tab-content .tab-pane").removeClass("active");
             $(this).find(".tab-content .tab-pane").filter("#" + tab_id).addClass("active");
+        },
+        "els": function() {
+            return $(this).find(".tab-content .tab-pane");
+        },
+        "el": function(tab_id) {
+            return $(this).find(".tab-content .tab-pane").filter("#" + tab_id);
         }
     }
 
