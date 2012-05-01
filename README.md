@@ -22,9 +22,7 @@ By default, jabba automatically generates an id for each tab by lowercasing the 
         {
             "title": "Home",
             "id": "custom_home_id",
-
-            //sets the content of the Home tab to #home_el on creation
-            "el": $("#home_el") 
+            "el": $("#home_el") //sets the content of the Home tab to #home_el on creation
         },
         {
             "title": "Profile",
