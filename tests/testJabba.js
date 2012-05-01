@@ -132,6 +132,9 @@ $(document).ready(function(){
             "tabs": ["Hello World", "Testing", "This"],
             "carousel": 200
         });
+        $('body').append(el);
+
+        equal( el.jabba("carousel"), 200 );
 
         equal( el.find(".tab-pane.active").attr("id"), "hello_world" );
         setTimeout(function() {
@@ -145,5 +148,16 @@ $(document).ready(function(){
             start();
         }, 750);
     });
-
+    test("carousel off", function() {
+        ok(false);
+    });
+    test("get selected tab", function() {
+        ok(false);
+    });
+    test("select tab", function() {
+        ok(false);
+    });
+    test("select tab with animation", function() {
+        ok(false);
+    });
 });
