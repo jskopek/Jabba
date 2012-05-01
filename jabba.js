@@ -72,11 +72,32 @@
 
             //select the first id
             var first_id = $(this).find(".tab-content .tab-pane:first").attr("id");
-            methods.select.call(this, first_id)
+            methods.select.call(this, first_id);
+
+            //trigger carousel, if options were set
+            if( options.carousel ) {
+                methods.carousel.call(this, options.carousel);
+            }
 
             console.log("jabba initialized on ", this, options);
         },
-        "select": function(tab_id) {
+        "carousel": function(time) {
+            if( time == undefined ) {
+                return $(this).data("carousel");
+            } else if( !time ) {
+                clearInterval( $(this).data("carouselTimer") );
+                return time;
+            }
+
+            var timerId = setInterval($.proxy(function() {
+                // var selected = $(this).jabba("selected");
+                // var tab_ids = $(this).jabba("tabs");
+            }, this), time);
+
+            $(this).data("carousel", time);
+            $(this).data("carouselTimer", timerId);
+        },
+        "selected": function(tab_id) {
             //add active class to tab title
             $(this).find(".nav-tabs li").removeClass("active");
             $(this).find(".nav-tabs li a").filter(function() {
