@@ -99,11 +99,20 @@ $(document).ready(function(){
         el.jabba(["12 numbers$*)#"]);
         equal( el.find(".tab-content .tab-pane").attr("id"), "12_numbers");
     });
+
     test("test manual jabba ids", function() {
         var el = $("<div/>");
         el.jabba([{"title": "Hello World", "id": "test_id"}, "Test Two"]);
         equal( el.find(".tab-content .tab-pane:first").attr("id"), "test_id");
         equal( el.find(".tab-content .tab-pane:last").attr("id"), "test_two");
+    });
+
+    test("get tab ids", function() {
+        var el = $("<div id='tst'></div>");
+
+        el.jabba(["Hello World", "Testing", "This"]);
+        var tab_ids = el.jabba("tabs");
+        deepEqual( tab_ids, ["hello_world", "testing", "this"] );
     });
 
 });

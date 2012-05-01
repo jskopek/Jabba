@@ -91,6 +91,15 @@
                 el.html( new_content );
             }
             return el;
+        },
+        "tabs": function() {
+            //jQuery's map() property does not return a simple array, so we build
+            //one from scratch instead
+            var result = [];
+            $(this).find(".tab-content .tab-pane").each(function() {
+                result.push( $(this).attr("id") );
+            });
+            return result;
         }
     }
 

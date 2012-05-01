@@ -56,7 +56,7 @@ All methods are called by invoking `$().jabba(method_name, arguments...)`
 - `jabba('selected', id)`: Sets the currently selected tab to be `id`
 - `jabba('carousel')`: Gets the time, in ms, between carousel transitions; set to 'false' if carousel is disabled
 - `jabba('carousel', time)`: Sets the time between carousel transitions, or disables carousel
-- `jabba('tabs')`: Gets the list of tabs
+- `jabba('tabs')`: Gets the list of tab ids
 
 Options:
 --------
