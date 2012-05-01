@@ -85,8 +85,12 @@
         "els": function() {
             return $(this).find(".tab-content .tab-pane");
         },
-        "el": function(tab_id) {
-            return $(this).find(".tab-content .tab-pane").filter("#" + tab_id);
+        "el": function(tab_id, new_content) {
+            var el = $(this).find(".tab-content .tab-pane").filter("#" + tab_id);
+            if( new_content ) {
+                el.html( new_content );
+            }
+            return el;
         }
     }
 

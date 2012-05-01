@@ -42,7 +42,7 @@ $(document).ready(function(){
         equal( el.find(".nav-tabs li").length, 3);
         equal( el.find(".tab-content .tab-pane").length, 3);
         equal( el.find(".nav-tabs li:first").text(), "Home");
-        equal( el.find(".tab-content .tab-pane:first").text(), content_el.text());
+        equal( el.find(".tab-content .tab-pane:first").children()[0], content_el[0]);
         equal( el.find(".nav-tabs li:last").text(), "Messages");
     });
 
@@ -70,6 +70,21 @@ $(document).ready(function(){
         var el3 = el.jabba("el", "invalid");
         ok( !el3.length );
     });
+
+    test("set element", function() {
+        var el = $("<div id='tst'></div>");
+
+        el.jabba(["Hello World"]);
+
+
+        var el1 = el.jabba("el", "hello_world");
+        equal( el.find(".tab-content .tab-pane:first").html(), "" );
+
+        var content_el = $("<div id='tst2'>Another test</div>");
+        el.jabba("el", "hello_world", content_el);
+        deepEqual( content_el[0], el.find(".tab-content .tab-pane:last").children()[0] );
+    });
+
 
     test("test auto jabba ids", function() {
         var el = $("<div/>");
