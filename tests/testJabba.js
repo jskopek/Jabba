@@ -159,12 +159,19 @@ $(document).ready(function(){
 
         el.jabba("selected", "this");
         equal( el.jabba("selected"), "this" );
+        ok( el.find(".tab-content .tab-pane#this").hasClass("active") );
 
         el.jabba("selected", "invalid");
         equal( el.jabba("selected"), undefined );
     });
-    test("select tab", function() {
-        ok(false);
+    test("initialize with custom selected tab", function() {
+        var el = $("<div id='tst'></div>");
+        el.jabba({
+            "tabs": ["Hello World", "Testing", "This"],
+            "selected": "testing"
+        });
+
+        equal( el.jabba("selected"), "testing" );
     });
     test("select tab with animation", function() {
         ok(false);

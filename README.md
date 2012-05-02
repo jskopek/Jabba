@@ -62,3 +62,4 @@ Options:
 --------
 - `tabs`: A list of tab titles to generate (e.g. ["Apple", "Bannana"]); if a list of arrays is passed, will pull data in the following format [title, id, element]
 - `carousel`: If set to false, tabs will not automatically transition between each other. If set to numeric value, will set the time between transitions, in ms
+- `selected`: The id of the tab you wish to select on initialization

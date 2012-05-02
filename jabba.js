@@ -79,6 +79,11 @@
                 methods.carousel.call(this, options.carousel);
             }
 
+            //trigger tab selection if options were set
+            if( options.selected ) {
+                methods.selected.call(this, options.selected);
+            }
+
             console.log("jabba initialized on ", this, options);
         },
         "carousel": function(time) {
