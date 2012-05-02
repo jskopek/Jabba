@@ -114,7 +114,7 @@
             $(this).data("carousel", time);
             $(this).data("carouselTimer", timerId);
         },
-        "selected": function(tab_id) {
+        "selected": function(tab_id, animate_time) {
             if( !tab_id ) {
                 return $(this).find(".tab-content .tab-pane.active").attr("id");
             }
@@ -127,7 +127,18 @@
 
             //add active class to tab content
             $(this).find(".tab-content .tab-pane").removeClass("active");
-            $(this).find(".tab-content .tab-pane").filter("#" + tab_id).addClass("active");
+
+            //either show new tab directly or animate it
+            var new_tab = $(this).find(".tab-content .tab-pane").filter("#" + tab_id);
+            if( !animate_time ) {
+                new_tab.addClass("active");
+            } else {
+                new_tab.fadeIn(animate_time, function() {
+                    new_tab.addClass("active");
+                    new_tab.css('display', '');
+                });
+            }
+                
         },
         "els": function() {
             return $(this).find(".tab-content .tab-pane");

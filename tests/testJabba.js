@@ -192,10 +192,32 @@ $(document).ready(function(){
         equal( el.jabba("selected"), "testing" );
     });
     test("select tab with animation", function() {
-        ok(false);
+        expect(2);
+        stop();
+
+        var el = $("<div id='tst'></div>");
+
+        el.jabba([
+            {
+                "title": "Hello World",
+                "el": "Tab 1"
+            },
+            {
+                "title": "Testing",
+                "el": "Tab 2"
+            }
+        ]);
+
+        equal( el.jabba("selected"), "hello_world" );
+
+        el.jabba("selected", "testing", 300);
+        setTimeout(function() {
+            equal( el.jabba("selected"), "testing" );
+            start();
+        }, 350);
     });
     test("carousel animates transition time", function() {
-        ok("false");
+        ok(false);
     });
     test("click on tab", function() {
         var el = $("<div id='tst'></div>");

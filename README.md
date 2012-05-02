@@ -53,7 +53,7 @@ All methods are called by invoking `$().jabba(method_name, arguments...)`
 - `jabba('el', id)`: Returns the DOM element assigned to the tab with the `id` defined by the first arugment
 - `jabba('el', id, dom_element)`: Sets `dom_element` as the content for tab `id`
 - `jabba('selected')`: Returns the id of the currently selected tab
-- `jabba('selected', id)`: Sets the currently selected tab to be `id`
+- `jabba('selected', id, animation_time)`: Sets the currently selected tab to be `id`. The optional `animation_time` property indicates the time, in ms, to fade the new tab in
 - `jabba('carousel')`: Gets the time, in ms, between carousel transitions; set to 'false' if carousel is disabled
 - `jabba('carousel', time)`: Sets the time between carousel transitions, or disables carousel
 - `jabba('tabs')`: Gets the list of tab ids
