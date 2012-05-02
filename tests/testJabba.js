@@ -194,7 +194,15 @@ $(document).ready(function(){
     test("select tab with animation", function() {
         ok(false);
     });
+    test("carousel animates transition time", function() {
+        ok("false");
+    });
     test("click on tab", function() {
+        var el = $("<div id='tst'></div>");
+
+        el.jabba(["Hello World", "Testing", "This"]);
+        el.find(".nav-tabs li a:eq(1)").click();
+        equal( el.jabba("selected"), "testing" );
     });
     test("multiple jabba instances running", function() {
     });

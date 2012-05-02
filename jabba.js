@@ -20,6 +20,10 @@
         if( !tab_el.length ) {
             tab_el = $("<li><a href='#" + tab_id + "'>" + tab_name + "</a></li>");
             tab_container_el.append(tab_el);
+            tab_el.bind("click", function(e) {
+                e.preventDefault();
+                methods.selected.call(el, tab_id);
+            });
         }
     }
     var render_tab_body = function(el, tab_id, tab_content_el) {
