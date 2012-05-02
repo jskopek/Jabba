@@ -217,7 +217,29 @@ $(document).ready(function(){
         }, 350);
     });
     test("carousel animates transition time", function() {
-        ok(false);
+        expect(3);
+        stop();
+
+        var el = $("<div id='tst'></div>");
+        el.jabba({
+            "tabs": ["Hello World", "Testing", "This"],
+            "carousel": 1500
+        });
+
+        $(el).jabba("el", "hello_world", "Content 1");
+        $(el).jabba("el", "testing", "Content 2");
+        $(el).jabba("el", "this", "Content 3");
+
+        equal( el.jabba("tab_el", "hello_world").find(".carousel-progress").css("width"), "0px" );
+
+        setTimeout(function() {
+            notEqual( el.jabba("tab_el", "hello_world").find(".carousel-progress").css("width"), "0px" );
+        }, 250);
+
+        setTimeout(function() {
+            equal( el.jabba("tab_el", "hello_world").find(".carousel-progress").css("width"), "0px" );
+            start();
+        }, 1550);
     });
     test("click on tab", function() {
         var el = $("<div id='tst'></div>");

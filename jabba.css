@@ -2,3 +2,28 @@ body {
     border: 10px solid red;
     padding: 10px;
 }
+
+.nav-tabs li {
+	position: relative;
+}
+.nav-tabs li a {
+	z-index: 100;
+	position: relative;
+}
+.carousel .nav-tabs li.active a {
+	background-color: transparent;
+	border-bottom: 1px solid #fff;
+	color: #0088cc;
+}
+.carousel .nav-tabs li.active .carousel-progress {
+	z-index: 99;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background: #d9edf8;
+	
+
+	-webkit-border-radius: 4px 4px 0 0;
+     -moz-border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 0 0;
+}

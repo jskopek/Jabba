@@ -14,11 +14,9 @@
         }
 
         //get or create tab title
-        var tab_el = $(el).find(".nav-tabs li").filter(function() {
-            return $(this).attr("href") == "#" + tab_id;
-        });
+        var tab_el = methods.tab_el.call(el, tab_id);
         if( !tab_el.length ) {
-            tab_el = $("<li><a href='#" + tab_id + "'>" + tab_name + "</a></li>");
+            tab_el = $("<li><div class='carousel-progress'></div><a href='#" + tab_id + "'>" + tab_name + "</a></li>");
             tab_container_el.append(tab_el);
             tab_el.bind("click", function(e) {
                 e.preventDefault();
@@ -66,7 +64,6 @@
                 if( !data["title"] ) {
                     throw("Could not find title in object: " + JSON.stringify(data) );
                 }
-                console.log("rendering", data);
 
                 //get data
                 var title = data["title"];
@@ -91,16 +88,35 @@
                 methods.selected.call(this, options.selected);
             }
 
-            console.log("jabba initialized on ", this, options);
         },
         "carousel": function(time) {
             if( time == undefined ) {
                 return $(this).data("carousel");
             } else if( !time ) {
                 clearInterval( $(this).data("carouselTimer") );
+                clearInterval( $(this).data("carouselProgressTimer") );
+                $(this).removeClass("carousel");
                 return time;
             }
+            $(this).addClass("carousel");
 
+            //animate the progress bar on the carousel
+            var carousel_update_delay = 50;
+            var tab_time = 0;
+            var carousel_progress_el = methods.tab_el.call(this, $(this).jabba("selected")).find(".carousel-progress");
+            var timerProgressId = setInterval($.proxy(function() {
+                tab_time += carousel_update_delay;
+                if( tab_time < time ) {
+                    var pct = Math.floor( tab_time * 100 / time );
+                    carousel_progress_el.css("width", pct + "%");
+                } else {
+                    carousel_progress_el.css("width", 0);
+                    carousel_progress_el = methods.tab_el.call(this, $(this).jabba("selected")).find(".carousel-progress");
+                    tab_time = 0;
+                }
+            }, this), carousel_update_delay);
+
+            //switch tabs when carousel runs out
             var timerId = setInterval($.proxy(function() {
                 var selected = $(this).jabba("selected");
                 var tab_ids = $(this).jabba("tabs");
@@ -108,11 +124,13 @@
                 var index = $.inArray(selected, tab_ids);
                 index = (index + 1) % tab_ids.length;
 
-                $(this).jabba("selected", tab_ids[index]);
+                var animation_time = (time >= 1500) ? 300 : false;
+                $(this).jabba("selected", tab_ids[index], animation_time);
             }, this), time);
 
             $(this).data("carousel", time);
             $(this).data("carouselTimer", timerId);
+            $(this).data("carouselProgressTimer", timerProgressId);
         },
         "selected": function(tab_id, animate_time) {
             if( !tab_id ) {
@@ -121,9 +139,7 @@
 
             //add active class to tab title
             $(this).find(".nav-tabs li").removeClass("active");
-            $(this).find(".nav-tabs li a").filter(function() {
-                return $(this).attr("href") == "#" + tab_id;
-            }).parent().addClass("active");
+            methods.tab_el.call( this, tab_id ).addClass("active");
 
             //add active class to tab content
             $(this).find(".tab-content .tab-pane").removeClass("active");
@@ -133,8 +149,8 @@
             if( !animate_time ) {
                 new_tab.addClass("active");
             } else {
+                new_tab.addClass("active");
                 new_tab.fadeIn(animate_time, function() {
-                    new_tab.addClass("active");
                     new_tab.css('display', '');
                 });
             }
@@ -149,6 +165,11 @@
                 el.html( new_content );
             }
             return el;
+        },
+        "tab_el": function(tab_id) {
+            return $(this).find(".nav-tabs li a").filter(function() {
+                return $(this).attr("href") == "#" + tab_id;
+            }).parent();
         },
         "tabs": function() {
             //jQuery's map() property does not return a simple array, so we build
