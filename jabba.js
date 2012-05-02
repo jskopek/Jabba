@@ -72,7 +72,7 @@
 
             //select the first id
             var first_id = $(this).find(".tab-content .tab-pane:first").attr("id");
-            methods.select.call(this, first_id);
+            methods.selected.call(this, first_id);
 
             //trigger carousel, if options were set
             if( options.carousel ) {
@@ -98,6 +98,10 @@
             $(this).data("carouselTimer", timerId);
         },
         "selected": function(tab_id) {
+            if( !tab_id ) {
+                return $(this).find(".tab-content .tab-pane.active").attr("id");
+            }
+
             //add active class to tab title
             $(this).find(".nav-tabs li").removeClass("active");
             $(this).find(".nav-tabs li a").filter(function() {

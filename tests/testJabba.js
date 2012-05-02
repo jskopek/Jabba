@@ -151,13 +151,26 @@ $(document).ready(function(){
     test("carousel off", function() {
         ok(false);
     });
-    test("get selected tab", function() {
-        ok(false);
+    test("get and select tabs", function() {
+        var el = $("<div id='tst'></div>");
+
+        el.jabba(["Hello World", "Testing", "This"]);
+        equal( el.jabba("selected"), "hello_world" );
+
+        el.jabba("selected", "this");
+        equal( el.jabba("selected"), "this" );
+
+        el.jabba("selected", "invalid");
+        equal( el.jabba("selected"), undefined );
     });
     test("select tab", function() {
         ok(false);
     });
     test("select tab with animation", function() {
         ok(false);
+    });
+    test("click on tab", function() {
+    });
+    test("multiple jabba instances running", function() {
     });
 });
