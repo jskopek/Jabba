@@ -95,8 +95,13 @@
             }
 
             var timerId = setInterval($.proxy(function() {
-                // var selected = $(this).jabba("selected");
-                // var tab_ids = $(this).jabba("tabs");
+                var selected = $(this).jabba("selected");
+                var tab_ids = $(this).jabba("tabs");
+
+                var index = $.inArray(selected, tab_ids);
+                index = (index + 1) % tab_ids.length;
+
+                $(this).jabba("selected", tab_ids[index]);
             }, this), time);
 
             $(this).data("carousel", time);

@@ -124,7 +124,7 @@ $(document).ready(function(){
     });
 
     test("carousel on", function() {
-        expect(4);
+        expect(5);
         stop();
 
         var el = $("<div id='tst'></div>");
