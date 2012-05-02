@@ -204,6 +204,37 @@ $(document).ready(function(){
         el.find(".nav-tabs li a:eq(1)").click();
         equal( el.jabba("selected"), "testing" );
     });
+
+    test("click on tab disables carousel", function() {
+        expect(2);
+        stop();
+
+        var el = $("<div id='tst'></div>");
+
+        el.jabba({
+            "tabs": ["Hello World", "Testing", "This"],
+            "carousel": 200
+        });
+        el.find(".nav-tabs li a:eq(1)").click();
+        equal( el.jabba("selected"), "testing" );
+        setTimeout(function() {
+            equal( el.jabba("selected"), "testing" );
+            start();
+        }, 250);
+    });
     test("multiple jabba instances running", function() {
+        var el = $("<div id='tst1'></div><div id='tst2'></div>");
+
+        el.filter("#tst1").jabba({
+            "tabs": ["Tst1.1", "Tst1.2", "Tst1.3"],
+            "carousel": 200,
+            "selected": "tst13"
+        });
+        el.filter("#tst2").jabba(["Tst2.1", "Tst2.2"]);
+
+        equal( el.filter("#tst1").jabba("selected"), "tst13" );
+        equal( el.filter("#tst2").jabba("selected"), "tst21" );
+        equal( el.filter("#tst1").jabba("tabs").length, 3 );
+        equal( el.filter("#tst2").jabba("tabs").length, 2 );
     });
 });

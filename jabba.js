@@ -22,6 +22,9 @@
             tab_container_el.append(tab_el);
             tab_el.bind("click", function(e) {
                 e.preventDefault();
+
+                //disable the carousel and select the tab
+                methods.carousel.call(el, false);
                 methods.selected.call(el, tab_id);
             });
         }
