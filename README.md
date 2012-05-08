@@ -3,6 +3,8 @@ Jabba
 
 jQuery tabs with (optional) carousel animations. It differs from traditional Tab libraries by relegating all DOM structure creation to Javascript. Perfect for Backbone-heavy projects!
 
+[View Example](http://jabba11222.appspot.com/)
+
 Usage
 -----
 
